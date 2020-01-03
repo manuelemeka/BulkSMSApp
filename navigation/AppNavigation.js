@@ -41,7 +41,7 @@ const VoiceSMSNavigation = createStackNavigator(
   {
     VoiceSMS: { screen: VoiceSMS ,
       navigationOptions: {
-        headerTitle: 'VoiceSMS',
+        headerTitle: 'SMS Template',
       },
     }
   },
@@ -57,6 +57,52 @@ const ProfileNavigation = createStackNavigator({
   
 });
 
+const AddressBookNavigation = createStackNavigator({
+  SettingsList: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'AddressBook',
+    },
+  },
+  
+});
+const BuyCreditNavigation = createStackNavigator({
+  SettingsList: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Buy Unit',
+    },
+  },
+  
+});
+const ReferralNavigation = createStackNavigator({
+  SettingsList: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Referral',
+    },
+  },
+  
+});
+const SettingsNavigation = createStackNavigator({
+  SettingsList: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Settings',
+    },
+  },
+  
+});
+
+const SupportNavigation = createStackNavigator({
+  SettingsList: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Support',
+    },
+  },
+  
+});
 const Tabs =  createMaterialBottomTabNavigator(
   {
  
@@ -75,10 +121,10 @@ const Tabs =  createMaterialBottomTabNavigator(
   VoiceSMSNavigation: {  
     screen: VoiceSMSNavigation,  
     navigationOptions:{  
-        tabBarLabel:'VoiceSMS',  
+        tabBarLabel:'SMS Template',  
         tabBarIcon: ({ tintColor }) => (  
             <View>  
-                <Icon style={[{color: tintColor}]} size={25} name='volume-down'/>  
+                <Icon style={[{color: tintColor}]} size={25} name='archive'/>  
             </View>),  
     },
      
@@ -108,6 +154,11 @@ HistoryNavigation: {
 const MainDrawer = createDrawerNavigator({
   Home: { screen: Tabs },
   Profile: { screen: ProfileNavigation },
+  AddressBook:{screen: AddressBookNavigation},
+  BuyCredit:{screen: BuyCreditNavigation},
+  Referral:{screen: ReferralNavigation},
+  Settings:{screen: SettingsNavigation},
+  Support:{screen: SupportNavigation},
   
 }
 ,

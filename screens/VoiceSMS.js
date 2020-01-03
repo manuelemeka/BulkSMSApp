@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 export default function VoiceSMS() {
   return (
     <View style={styles.container}>
-      <Text>VoiceSMS</Text>
+      <Text>SMS TEMPLATE</Text>
     </View>
   )
 }
