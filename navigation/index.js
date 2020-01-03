@@ -1,0 +1,22 @@
+/* eslint-disable prettier/prettier */
+import { 
+    createSwitchNavigator, 
+    createAppContainer,
+ } 
+ from 'react-navigation';
+import AuthNavigation from './AuthNavigation';
+import MainDrawer from './AppNavigation';
+
+const SwitchNavigator = createSwitchNavigator(
+  {
+    Auth: AuthNavigation,
+    App: MainDrawer
+  },
+  {
+    initialRouteName: 'Auth',
+  }
+)
+
+const AppContainer = createAppContainer(SwitchNavigator)
+
+export default AppContainer
