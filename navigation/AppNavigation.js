@@ -11,6 +11,7 @@ import {
 import VoiceSMS from '../screens/VoiceSMS';
 import TextSMS from '../screens/TextSMS';
 import Profile from '../screens/Profile';
+import Support from '../screens/Support';
 
 const HistoryNavigation = createStackNavigator(
   {
@@ -94,15 +95,7 @@ const SettingsNavigation = createStackNavigator({
   
 });
 
-const SupportNavigation = createStackNavigator({
-  SettingsList: {
-    screen: Profile,
-    navigationOptions: {
-      headerTitle: 'Support',
-    },
-  },
-  
-});
+
 const Tabs =  createMaterialBottomTabNavigator(
   {
  
@@ -158,7 +151,7 @@ const MainDrawer = createDrawerNavigator({
   BuyCredit:{screen: BuyCreditNavigation},
   Referral:{screen: ReferralNavigation},
   Settings:{screen: SettingsNavigation},
-  Support:{screen: SupportNavigation},
+  Support:{screen: Support},
   
 }
 ,

@@ -8,35 +8,27 @@ import {
     Image,
     TouchableHighlight,
     ImageBackground,
+    ScrollView,
+    TextInput,
     } from 'react-native';
-    
-import Dialog from "react-native-dialog";
 
-//import rootNav from './component';
-//import Root from './component/root';
 
 
 export default class _init_ extends Component {
   state = {
-    dialogVisible: false,
+    
     email: "",
     password: "",
   };
  
-  showDialog = () => {
-    this.setState({ dialogVisible: true });
-  };
- 
-  handleCancel = () => {
-    this.setState({ dialogVisible: false });
-  };
+  
  
   handleLogin = async () => {
     console.log("clicked login");
     const { email, password } = this.state
     try {
-      if (email.length > 0 && password.length > 0) {
-        this.setState({ dialogVisible: false });
+      if (email.length >= 0 && password.length >= 0) {
+       // this.setState({ dialogVisible: false });
         this.props.navigation.navigate('App')
       }
     } catch (error) {
@@ -63,54 +55,40 @@ export default class _init_ extends Component {
         style={ styles.imgBackground } 
       >
     
-    <View style={styles.container}>
-       <View style={styles.banner}>
-       <Image 
-       source={require('./images/logo.png')}
-       style= { styles.logo } />
-       <Text style={styles.logoText}>SuyaSmS</Text>
-       <Text style={styles.serviceText}> We Offer Efficient bulkSMS and VoiceSMS Service</Text>
-       </View>
     
+       
     
-       <View style={styles.menu}>
-       <TouchableHighlight
+      <View style={styles.container} >
+      <View style={styles.flexOne} >
+        <Text style={styles.LoginHeader}>Log In</Text>
+      <View style={styles.flexOne}>
+      <TextInput placeholder="Email" inputChange={this.handleEmailChange} style={styles.FormText} />
+      </View>
+
+      <View style={styles.flexOne}>
+      <TextInput placeholder="Password" inputChange={this.handlePasswordChange} secureTextEntry style={styles.FormText} />
+      </View>
+
+      <TouchableHighlight
     underlayColor='#efefef'
     style={styles.button}
-    onPress={this.showDialog}>
+    onPress={this.handleLogin}>
     
     <Text style={styles.buttonText}>
     Sign In
     </Text>
     </TouchableHighlight>
-    <TouchableHighlight
-    underlayColor='#efefef'
-    style={styles.clickable}>
-    <Text style={styles.buttonText}>
-    Sign Up
-    </Text>
-    </TouchableHighlight>
-    <TouchableHighlight
-    underlayColor='#efefef'
-    style={styles.clickable}>
-    <Text style={styles.buttonText}>
-    Forgot Password
-    </Text>
-    </TouchableHighlight>
-    <Dialog.Container 
-    visible={this.state.dialogVisible}
-    style={styles.dialogContainer}>
-              <Dialog.Title>Login</Dialog.Title>
-              <Dialog.Description>
-                .
-              </Dialog.Description>
-              <Dialog.Input name='email' autoCapitalize='none' placeholder="Email" style={styles.dialogInput} onChangeText={this.handleEmailChange} />
-              <Dialog.Input  name='password' secureTextEntry placeholder="Password" style={styles.dialogInput} onChangeText={this.handlePasswordChange} />
-              <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-              <Dialog.Button label="Login" onPress={this.handleLogin} />
-            </Dialog.Container>
-       </View>
-     </View>
+      </View>
+        
+        </View>
+    
+    
+       
+       
+    
+    
+       
+    
      
      </ImageBackground>
 
@@ -121,11 +99,33 @@ export default class _init_ extends Component {
 }
 
 const styles = StyleSheet.create({
+
+  LoginHeader:{
+    fontSize:26,
+    
+  },
+
+  flexOne:{
+    width:'100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+  },
+  FormText: {
+    width: '80%',
+    //borderWidth: 1,
+    borderRadius: 10,
+    //borderColor: '#694fad',
+    backgroundColor:'rgba(105,79,173,0.3)',
+    fontSize: 18,
+    fontWeight:"bold",
+    
+  },
     container: {
     flex: 1,
-    //backgroundColor: "white",
-    //opacity:0,
-    },
+    justifyContent: 'center',
+    alignItems: 'center',
+         },
     
     logo:{
   
@@ -155,28 +155,21 @@ const styles = StyleSheet.create({
       color: '#525B56',
       fontSize:18,
     },
-    banner: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 60,
-    },
-    menu:{
-      alignItems: 'center',
-      flex: 40,
-    },
+    
+ 
     button: {
       height: 40,
       paddingLeft: 20,
       paddingRight: 20,
-      backgroundColor: '#ffffff',
-      width: 400,
+      backgroundColor: '#694fad',
+      width: '50%',
       marginRight: 20,
       marginTop: 5,
       borderWidth: 1,
       borderRadius:50,
-      borderColor: 'rgba(255,120,0,.5)',
-      justifyContent: 'center',
-      alignItems: 'center',
+      borderColor: '#694fad',
+    justifyContent: 'center',
+    alignItems: 'center',
       
       },
       clickable: {
@@ -190,7 +183,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
         },
       buttonText: {
-      color: 'rgb(255,120,0)',
+      color: '#fff',
       fontWeight: '600'
       },
       clickableText: {
@@ -198,8 +191,7 @@ const styles = StyleSheet.create({
         fontWeight: '600'
         },
         imgBackground: {
-          width: '100%',
-          height: '100%',
+          padding:(5,5,5,5),
           flex: 1,
           backgroundColor: "white",
   },
