@@ -19,6 +19,7 @@ export default class _init_ extends Component {
     
     email: "",
     password: "",
+    error:"",
   };
  
   
@@ -27,9 +28,14 @@ export default class _init_ extends Component {
     console.log("clicked login");
     const { email, password } = this.state
     try {
-      if (email.length >= 0 && password.length >= 0) {
+      if (email.length > 0 && password.length > 0) {
        // this.setState({ dialogVisible: false });
         this.props.navigation.navigate('App')
+
+       // this.setState({ error:"" })
+      }
+      else{
+        this.setState({ error:"Error LogIn check your details" })
       }
     } catch (error) {
       alert(error)
@@ -37,13 +43,15 @@ export default class _init_ extends Component {
   };
   
   
-  handleEmailChange = email => {
-    this.setState({ email })
-  };
+  handleEmailChange (email) {
+    console.log(' Email: ' , email)
+    this.setState({ email,  error:"" })
+    }
 
-  handlePasswordChange = password => {
-    this.setState({ password })
-  };
+  handlePasswordChange (password) {
+    //console.log(' Email: ' , email)
+    this.setState({ password,error:"" })
+    }
 
   render() {
     return (
@@ -60,13 +68,19 @@ export default class _init_ extends Component {
     
       <View style={styles.container} >
       <View style={styles.flexOne} >
+        <Image
+          source={require('./images/logo.png')}
+          style={ styles.logo }
+          
+          />
         <Text style={styles.LoginHeader}>Log In</Text>
+    <Text style={styles.LoginError}>{this.state.error}</Text>
       <View style={styles.flexOne}>
-      <TextInput placeholder="Email" inputChange={this.handleEmailChange} style={styles.FormText} />
+      <TextInput placeholder="Email" onChangeText={(text) => this.handleEmailChange(text)} style={styles.FormText} />
       </View>
 
       <View style={styles.flexOne}>
-      <TextInput placeholder="Password" inputChange={this.handlePasswordChange} secureTextEntry style={styles.FormText} />
+      <TextInput placeholder="Password" onChangeText={(text) => this.handlePasswordChange(text)} secureTextEntry style={styles.FormText} />
       </View>
 
       <TouchableHighlight
@@ -105,6 +119,13 @@ const styles = StyleSheet.create({
     
   },
 
+  LoginError:{
+    fontSize:12,
+    paddingBottom:10,
+    paddingTop:10,
+    //fontColor:"red";
+  },
+
   flexOne:{
     width:'100%',
     justifyContent: 'center',
@@ -117,7 +138,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     //borderColor: '#694fad',
     backgroundColor:'rgba(105,79,173,0.3)',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight:"bold",
     
   },
@@ -129,9 +150,9 @@ const styles = StyleSheet.create({
     
     logo:{
   
-      height:200,
-      width: 200,
-      borderRadius:20,
+      height:60,
+      width: 80,
+      
     },
     logoText:{
   

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 
+
 export default class Skeleton extends React.Component{
   render() {
     return (
@@ -19,17 +20,17 @@ export default class Skeleton extends React.Component{
             <Icon
               name="menu"
               style={styles.appBar}
-              onPress={() => this.props.OpenDrawer}
+              onPress={() => this.props.OpenDrawerMenu.openDrawer()}
             />
           </Left>
 
           <Right>
-            <View style={{alignItems: 'flex-start',}}><Text style={{fontWeight:'bold',fontSize:20}}>SuyaSMS</Text></View>
+    <View style={{alignItems: 'flex-start',}}><Text style={{fontWeight:'bold',fontSize:20}}>{this.props.title}</Text></View>
           </Right>
 
 </Header>
 
-        <Content>
+        <Content style={styles.Content}>
             
         {this.props.children}
             
@@ -51,6 +52,9 @@ appBar: {
   justifyContent: 'center',
 },
 
-
+Content:{
+  backgroundColor:'rgb(250,250,250)',
+  paddingTop:10,
+},
 
 });

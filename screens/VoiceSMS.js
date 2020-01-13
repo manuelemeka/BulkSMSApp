@@ -2,9 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View,ScrollView, } from 'react-native'
 import Skeleton from './Skeleton'
 
-export default function VoiceSMS() {
+export default class VoiceSMS extends React.Component {
+  render() {
   return (
-    <Skeleton>
+    <Skeleton
+    OpenDrawerMenu= {this.props.navigation} 
+      title={"SMS Template"}
+    >
     <View>
 
 
@@ -62,6 +66,7 @@ network connectivity of the device.
     </View>
     </Skeleton>
   )
+}
 }
 
 const styles = StyleSheet.create({

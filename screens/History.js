@@ -1,10 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import Skeleton from './Skeleton';
 
-export default function History() {
+export default class History extends React.Component {
+  render() {
   return (
-
+<Skeleton
+    OpenDrawerMenu= {this.props.navigation} 
+      title={"History"}
+    >
     <View style={styles.container}>
       <View></View>
 
@@ -52,9 +57,10 @@ network connectivity of the device.</Text></View>
 
 
     </View>
+    </Skeleton>
   )
 }
-
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -5332,6 +5332,11 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-contacts@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-5.0.6.tgz#929aa236eced56ea5662807ce8e9afb4f4bbbfe2"
+  integrity sha512-C0S0/rFxGh8URkxPigeb9ofAa3uzuaz5N++uRZx+p1KLkJItTvWj2eley2n3pA+ziePy4UrjP/W+2yYeUlxSqQ==
+
 react-native-dialog@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/react-native-dialog/-/react-native-dialog-5.6.0.tgz#8c36a1e9f397eba0cea88821ebcf92f029236a1a"

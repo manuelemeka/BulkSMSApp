@@ -1,26 +1,24 @@
-/* eslint-disable prettier/prettier */
 //AppNavigation.js
 import React from 'react';  
 import {StyleSheet, Text, View,Button} from 'react-native';  
-import {
-   createStackNavigator, } from 'react-navigation-stack';
-   import { createDrawerNavigator } from 'react-navigation-drawer';
-   import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-   import {Icon} from 'react-native-elements';
-   import History from '../screens/History';
+import {createStackNavigator, } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import {Icon} from 'react-native-elements';
+import History from '../screens/History';
 import VoiceSMS from '../screens/VoiceSMS';
 import TextSMS from '../screens/TextSMS';
 import Profile from '../screens/Profile';
 import Support from '../screens/Support';
+import AddressBook from '../screens/AddressBook';
 
 const HistoryNavigation = createStackNavigator(
   {
-    History: { screen: History ,
-      navigationOptions: {
-        headerTitle: 'History',
-      },
-    }
+    History: { screen: History}
   },
+  {
+headerMode: 'none'
+}
   
   
 )
@@ -40,12 +38,11 @@ const TextSMSNavigation = createStackNavigator(
 )
 const VoiceSMSNavigation = createStackNavigator(
   {
-    VoiceSMS: { screen: VoiceSMS ,
-      navigationOptions: {
-        headerTitle: 'SMS Template',
-      },
-    }
+    VoiceSMS: { screen: VoiceSMS}
   },
+  {
+headerMode: 'none'
+}
 )
 
 const ProfileNavigation = createStackNavigator({
@@ -59,14 +56,17 @@ const ProfileNavigation = createStackNavigator({
 });
 
 const AddressBookNavigation = createStackNavigator({
-  SettingsList: {
-    screen: Profile,
-    navigationOptions: {
-      headerTitle: 'AddressBook',
-    },
-  },
   
-});
+  SettingsList: {
+    screen: AddressBook
+  }
+  
+},
+  {
+    headerMode: 'none'
+    }
+  
+);
 const BuyCreditNavigation = createStackNavigator({
   SettingsList: {
     screen: Profile,
@@ -138,9 +138,9 @@ HistoryNavigation: {
 },
   {
     initialRouteName: 'TextSMSNavigation',
-    activeColor: '#f0edf6',
+    activeColor: '#694fad',
     inactiveColor: '#3e2465',
-    barStyle: { backgroundColor: '#694fad' },
+    barStyle: { backgroundColor: '#fff' },
   }
 );
 

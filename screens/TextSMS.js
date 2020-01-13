@@ -6,16 +6,54 @@ import {
   TouchableHighlight,
   TextInput,
 } from 'react-native';
-import {Header, Container, Left, Content, Right} from
-'native-base';
 import {Icon} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
+import Dialog from "react-native-dialog";
+
 import Skeleton from './Skeleton';
 
 export default class TextSMS extends React.Component {
+  state = {
+    
+    CharCount:0,
+    page:0,
+    Message:"",
+    ShowRecipientMenu:false,
+    ShowSendMenu:false,
+    unit:0,
+
+  };
+
+  
+
+  handleTextChange (mssg) {
+    
+    var p = Math.floor( mssg.length/160) + 1
+    console.log("current page", ""+p)
+    this.setState({ Message:mssg,
+      CharCount:mssg.length,
+    page: p })
+    }
+
+    handleCancel = () => {
+      this.setState({ ShowRecipientMenu: false, ShowSendMenu: false });
+    };
+
+    showDialog = () => {
+      this.setState({ ShowRecipientMenu: true });
+    };
+
+    showSenderDialog = () => {
+      this.setState({ ShowSendMenu: true });
+    };
+
   render() {
     return (
-      <Skeleton OpenDrawer = {this.props.navigation.openDrawer()} >
+      <Skeleton 
+      OpenDrawerMenu= {this.props.navigation} 
+      title={"SuyaSMS"}
+      
+      >
 
   <ScrollView >
             <View>
@@ -23,7 +61,7 @@ export default class TextSMS extends React.Component {
             <View style={styles.FormPane}>
                 <View style={styles.FormTextView}>
                   
-                   <View style={{flex: 50,alignItems: 'center',}}><Text style={{fontWeight:'bold',}}>Balance: 0 Unit</Text></View>
+                   <View style={{flex: 50,alignItems: 'center',}}><Text style={{fontWeight:'bold',}}>Balance: {this.state.unit} Unit(s)</Text></View>
                    <View style={{flex: 50,alignItems: 'center',}}>
                    <TouchableHighlight underlayColor="#efefef" style={styles.TopUp}>
               <Text style={styles.buttonText}>TopUp</Text>
@@ -56,7 +94,7 @@ export default class TextSMS extends React.Component {
                   <TouchableHighlight
                     underlayColor="#efefef"
                     style={styles.Contact}
-                    //onPress={ this.props.navigation.navigate('Auth')}
+                    onPress={ () => this.showDialog()}
                   >
                     <Icon  size={25} name='verified-user'/>
                   </TouchableHighlight>
@@ -73,6 +111,7 @@ export default class TextSMS extends React.Component {
       placeholderTextColor="grey"
       numberOfLines={10}
       multiline={true}
+      onChangeText={(text) => this.handleTextChange(text)}
     />
   </View>
   </View>
@@ -81,8 +120,8 @@ export default class TextSMS extends React.Component {
                 <View style={styles.FormPane}>
                 <View style={styles.FormTextView}>
                   
-                   <View style={{flex: 50,alignItems: 'center',}}><Text >0/160</Text></View>
-                   <View style={{flex: 50,alignItems: 'center',}}><Text>1 page(s)</Text></View>
+    <View style={{flex: 50,alignItems: 'center',}}><Text >{this.state.CharCount}/160</Text></View>
+                   <View style={{flex: 50,alignItems: 'center',}}><Text>{this.state.page} page(s)</Text></View>
                 </View>
                 </View>
 
@@ -90,17 +129,41 @@ export default class TextSMS extends React.Component {
     <TouchableHighlight
               underlayColor="#efefef"
               style={styles.SendNow}
-              //onPress={ this.props.navigation.navigate('Auth')}
+              onPress={ () => this.showSenderDialog()}
             >
               <Text style={styles.buttonText}>Send</Text>
             </TouchableHighlight>
     </View>
         </View>
 
+        <Dialog.Container visible={this.state.ShowRecipientMenu}
+            style={styles.dialogContainer}>
+          <Dialog.Title>Recipient(s)</Dialog.Title>
+          <Dialog.Description>
+            Select where to fetch recipient(s)
+          </Dialog.Description>
+          
+          <Dialog.Button label="Cancel" onPress={ () => this.handleCancel()} />
+        </Dialog.Container>
+
+        <Dialog.Container visible={this.state.ShowSendMenu}
+            style={styles.dialogContainer}>
+          <Dialog.Title>Confirm</Dialog.Title>
+          <Dialog.Description>
+            You are Sending {this.state.page} page(s) message. SMS will cost {(this.state.page * 2 )} units
+          </Dialog.Description>
+          
+          <Dialog.Button label="Send" onPress={ () => this.handleCancel()} />
+          <Dialog.Button label="Cancel" onPress={ () => this.handleCancel()} />
+        </Dialog.Container>
         
+
         </View>
+
+        
       
           </ScrollView>
+
           </Skeleton>
     );
   }
